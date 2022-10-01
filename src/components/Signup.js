@@ -18,11 +18,11 @@ export default function Signup() {
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="email" ref={passwordRef} required />
+              <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
             <Form.Group id="password-conf">
               <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="email" ref={passwordConfirmRef} required />
+              <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
             <Button className="w-100" type="submit">
               Signup
