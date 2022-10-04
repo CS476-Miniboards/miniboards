@@ -26,7 +26,7 @@ export default function Signup() {
               />
             </Form.Group>
             <Form.Group id="password-conf">
-              <Form.Label>Confirm Password?</Form.Label>
+              <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="email"
                 autocomplete="new-password"
