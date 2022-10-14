@@ -2,6 +2,8 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import GameList from "./GameList";
 
 export default function Header() {
   return (
@@ -9,8 +11,12 @@ export default function Header() {
       <Container>
         <Navbar.Brand href="/">Miniboards</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/">Games</Nav.Link>
-          <Nav.Link href="/boards">Boards</Nav.Link>
+          <NavDropdown title="Games" id="gamesDropdown">
+            <GameList type="Game"/>
+          </NavDropdown>
+          <NavDropdown title="Boards" id="gamesDropdown">
+            <GameList type="Board"/>
+          </NavDropdown>
           <Nav.Link href="/dashboard">Profile</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
