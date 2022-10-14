@@ -5,7 +5,7 @@
       
     "games": {
       ".read": "true",
-      ".write": "auth.uid !== null",
+      ".write": "auth.uid !== null"
     }
   }
 }
