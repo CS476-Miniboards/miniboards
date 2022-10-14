@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, {useEffect} from "react";
 import { NavDropdown } from "react-bootstrap";
 
-export default function GameList() {
+export default function GameList({type}) {
+  useEffect (()=> {
+    console.log(type)
+  },[])
+
   return (
-    <>
-      <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-      <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-      <NavDropdown.Divider />
-      <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+    <> 
+    {/* Temporary, we will get the values from the database and map these to games or boards based on the type */}
+      <NavDropdown.Item link="/">Game</NavDropdown.Item>
+      <NavDropdown.Item link="/">Another Game</NavDropdown.Item>
     </>
   );
 }

@@ -18,14 +18,14 @@ import Header from "./Header";
 function App() {
   return (
     <>
-      <Header />
-      <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <div className="w-100" style={{ maxWidth: "400px" }}>
-          <Router>
-            <AuthProvider>
+      <Router>
+        <AuthProvider>
+          <Header />
+          <Container
+            className="d-flex align-items-center justify-content-center"
+            style={{ minHeight: "100vh" }}
+          >
+            <div className="w-100" style={{ maxWidth: "400px" }}>
               <Routes>
                 <Route
                   exact
@@ -57,10 +57,10 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
               </Routes>
-            </AuthProvider>
-          </Router>
-        </div>
-      </Container>
+            </div>
+          </Container>
+        </AuthProvider>
+      </Router>
     </>
   );
 }

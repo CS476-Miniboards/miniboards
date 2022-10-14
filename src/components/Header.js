@@ -4,12 +4,18 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import GameList from "./GameList";
+import { Link } from "react-router-dom";
+import { useAuth } from "../Models/auth/AuthContext";
+
 
 export default function Header() {
+  const { currentUser } = useAuth();
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Miniboards</Navbar.Brand>
+        <Nav.Link as={Link} to="/">
+          <Navbar.Brand >Miniboards</Navbar.Brand>
+        </Nav.Link>
         <Nav className="me-auto">
           <NavDropdown title="Games" id="gamesDropdown">
             <GameList type="Game"/>
@@ -17,13 +23,14 @@ export default function Header() {
           <NavDropdown title="Boards" id="gamesDropdown">
             <GameList type="Board"/>
           </NavDropdown>
-          <Nav.Link href="/dashboard">Profile</Nav.Link>
+          <Nav.Link as={Link} to="/dashboard">Profile</Nav.Link>
         </Nav>
+        {currentUser?
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
-          </Navbar.Text>
-        </Navbar.Collapse>
+            Signed in as: <a href="#login">{currentUser.email}</a>
+          </Navbar.Text> 
+        </Navbar.Collapse>: <></>}
       </Container>
     </Navbar>
   );
