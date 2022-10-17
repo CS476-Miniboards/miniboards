@@ -8,12 +8,13 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Dashboard from "../Controller components/Dashboard";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import Home from "./Home";
-import Header from "./Header";
+import Header from "../Controller components/Header";
+import { db } from "../firebase";
 
 function App() {
   return (
