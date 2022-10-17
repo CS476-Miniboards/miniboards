@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { NavDropdown } from "react-bootstrap";
 
 export default function GameList({type}) {
