@@ -2,6 +2,8 @@ import React from "react";
 import Signup from "./Signup";
 import { Container } from "react-bootstrap";
 import { AuthProvider, useAuth } from "../Models/auth/AuthContext";
+import { GameListProvider, useGame } from "../Models/gameList/GameListContext";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,52 +16,53 @@ import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import Home from "./Home";
 import Header from "../Controller components/Header";
-import { db } from "../firebase";
 
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
-          <Header />
-          <Container
-            className="d-flex align-items-center justify-content-center"
-            style={{ minHeight: "100vh" }}
-          >
-            <div className="w-100" style={{ maxWidth: "400px" }}>
-              <Routes>
-                <Route
-                  exact
-                  path="/"
-                  element={
-                    <RequireAuth redirectTo="/login">
-                      <Home />
-                    </RequireAuth>
-                  }
-                />
-                <Route
-                  exact
-                  path="/dashboard"
-                  element={
-                    <RequireAuth redirectTo="/login">
-                      <Dashboard />
-                    </RequireAuth>
-                  }
-                />
-                <Route
-                  path="/update-profile"
-                  element={
-                    <RequireAuth redirectTo="/login">
-                      <UpdateProfile />
-                    </RequireAuth>
-                  }
-                />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-              </Routes>
-            </div>
-          </Container>
+          <GameListProvider>
+            <Header />
+            <Container
+              className="d-flex align-items-center justify-content-center"
+              style={{ minHeight: "100vh" }}
+            >
+              <div className="w-100" style={{ maxWidth: "400px" }}>
+                <Routes>
+                  <Route
+                    exact
+                    path="/"
+                    element={
+                      <RequireAuth redirectTo="/login">
+                        <Home />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/dashboard"
+                    element={
+                      <RequireAuth redirectTo="/login">
+                        <Dashboard />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    path="/update-profile"
+                    element={
+                      <RequireAuth redirectTo="/login">
+                        <UpdateProfile />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                </Routes>
+              </div>
+            </Container>
+          </GameListProvider>
         </AuthProvider>
       </Router>
     </>

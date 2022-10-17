@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavDropdown } from "react-bootstrap";
+import {useGame} from '../Models/gameList/GameListContext'
 
 export default function GameList({type}) {
 
+  const {gameList, isLoading} = useGame();
+  useEffect(()=> {
+    console.log(gameList)
+  },[])
+
   return (
-    <> 
-    {/* Temporary, we will get the values from the database and map these to games or boards based on the type */}
-      <NavDropdown.Item link="/">Game</NavDropdown.Item>
-      <NavDropdown.Item link="/">Another Game</NavDropdown.Item>
-    </>
+    isLoading ? <></> :
+    Object.values(gameList).map((game, i)=>(
+      <NavDropdown.Item link="/" key={i}>{game.Name}</NavDropdown.Item>
+    ))
   );
 }
