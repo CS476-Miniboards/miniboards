@@ -89,7 +89,6 @@ function App() {
 
 function RequireAuth({ children, redirectTo }) {
   const { currentUser } = useAuth();
-  console.log(currentUser);
   return currentUser ? children : <Navigate to={redirectTo} />;
 }
 
