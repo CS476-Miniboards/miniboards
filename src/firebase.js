@@ -1,6 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-// import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,4 +18,5 @@ const app = firebase.initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
 export const auth = app.auth();
+export const db = getDatabase(app);
 export default app;

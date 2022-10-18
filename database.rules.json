@@ -1,6 +1,11 @@
 {
   "rules": {
-    ".read": true,
-    ".write": false
+    ".read": "auth.uid !== null",
+    ".write": "auth.uid !== null",
+      
+    "games": {
+      ".read": "true",
+      ".write": "auth.uid !== null"
+    }
   }
 }
