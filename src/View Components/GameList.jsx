@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavDropdown } from "react-bootstrap";
 import {useGame} from '../Models/gameList/GameListContext'
 
 export default function GameList({type}) {
 
   const {gameList, isLoading} = useGame();
-  useEffect(()=> {
-    console.log(gameList)
-  },[])
 
   return (
     isLoading ? <></> :
