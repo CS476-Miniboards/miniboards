@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,6 +9,11 @@ import { useAuth } from "../Models/auth/AuthContext";
 
 export default function Header() {
   const { currentUser } = useAuth();
+  const [displayName, setDisplayName] = useState(currentUser.displayName);
+
+  useEffect(() => {
+    setDisplayName(currentUser.displayName);
+  }, [currentUser]);
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -29,7 +34,7 @@ export default function Header() {
         {currentUser ? (
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              Signed in as: <a href="#login">{currentUser.email}</a>
+              Signed in as: <a href="#login">{displayName}</a>
             </Navbar.Text>
           </Navbar.Collapse>
         ) : (

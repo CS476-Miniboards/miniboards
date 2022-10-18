@@ -2,8 +2,10 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../Models/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 export default function UpdateProfile() {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -28,6 +30,14 @@ export default function UpdateProfile() {
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value));
     }
+    if (nameRef.current.value !== currentUser.displayName) {
+      promises.push(
+        currentUser.updateProfile({ displayName: nameRef.current.value })
+      );
+
+      const user = auth.currentUser;
+      promises.push(user.notifyPath("user.displayName"));
+    }
 
     Promise.all(promises)
       .then(() => {
@@ -48,6 +58,15 @@ export default function UpdateProfile() {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            <Form.Group id="userName">
+              <Form.Label>User Name</Form.Label>
+              <Form.Control
+                type="text"
+                ref={nameRef}
+                required
+                defaultValue={currentUser.displayName}
+              />
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
