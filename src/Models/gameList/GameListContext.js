@@ -18,20 +18,39 @@ export function GameListProvider({ children }) {
       const data = snapshot.val();
       if (data !== null) {
         setGameList([]);
-        Object.values(data).map((gameList) => {
-          setGameList((oldGameList) => [...oldGameList, gameList]);
-        });
+        Object.values(data).map((gameList) =>
+          setGameList((oldGameList) => [...oldGameList, gameList])
+        );
       }
       setLoading(false);
     });
 
-    console.log(gameList);
     return unsubscribe;
   }, []);
+
+  function selectGame(game) {
+    setCurrentGame(game);
+  }
+
+  useEffect(() => {
+    const unsubscribe = onValue(
+      ref(db, "/games/" + currentGame?.ID),
+      (snapshot) => {
+        const data = snapshot.val();
+        if (data !== null) {
+          setCurrentGame(data);
+        }
+        setLoading(false);
+      }
+    );
+
+    return unsubscribe;
+  }, [currentGame]);
 
   const value = {
     currentGame,
     gameList,
+    selectGame,
   };
 
   return (

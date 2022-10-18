@@ -17,10 +17,10 @@ export default function Header() {
         </Nav.Link>
         <Nav className="me-auto">
           <NavDropdown title="Games" id="gamesDropdown">
-            <GameList type="Game" />
+            <GameList type="game" />
           </NavDropdown>
           <NavDropdown title="Boards" id="gamesDropdown">
-            <GameList type="Board" />
+            <GameList type="board" />
           </NavDropdown>
           <Nav.Link as={Link} to="/dashboard">
             Profile

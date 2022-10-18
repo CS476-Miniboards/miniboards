@@ -2,7 +2,7 @@ import React from "react";
 import Signup from "./Signup";
 import { Container } from "react-bootstrap";
 import { AuthProvider, useAuth } from "../Models/auth/AuthContext";
-import { GameListProvider, useGame } from "../Models/gameList/GameListContext";
+import { GameListProvider } from "../Models/gameList/GameListContext";
 
 import {
   BrowserRouter as Router,
@@ -16,6 +16,8 @@ import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import Home from "./Home";
 import Header from "../Controller components/Header";
+import Board from "../View Components/Board";
+import Game from "../View Components/Game";
 
 function App() {
   return (
@@ -53,6 +55,22 @@ function App() {
                     element={
                       <RequireAuth redirectTo="/login">
                         <UpdateProfile />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    path="/board"
+                    element={
+                      <RequireAuth redirectTo="/login">
+                        <Board />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    path="/game"
+                    element={
+                      <RequireAuth redirectTo="/login">
+                        <Game />
                       </RequireAuth>
                     }
                   />
