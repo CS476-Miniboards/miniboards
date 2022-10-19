@@ -13,5 +13,5 @@ export default function Board() {
   }, [currentGame, navigate])
   
 
-  return isLoading? <></> : <div>{currentGame?.Name} Board</div>;
+  return isLoading? <></> : <RealtimeData/>;
 }
