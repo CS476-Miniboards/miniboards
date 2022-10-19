@@ -1,8 +1,5 @@
-import { db } from "../firebase";
-import React from 'react';
-import {ref, onValue} from "firebase/database";
-import {Table} from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { Table } from "react-bootstrap";
 
 export class RealtimeData extends React.Component{
     constructor(){
@@ -26,6 +23,8 @@ export class RealtimeData extends React.Component{
         });
     }
 
+// game is the node
+// deleted index from map
     render(){
         return(
             <Table>
