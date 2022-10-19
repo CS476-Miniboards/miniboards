@@ -12,6 +12,6 @@ export default function Board() {
     }
   }, [currentGame, navigate])
   
-
+// <RealtimeData/> displays the leaderboard to the page
   return isLoading? <></> : <RealtimeData/>;
 }

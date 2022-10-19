@@ -26,8 +26,6 @@ export class RealtimeData extends React.Component{
         });
     }
 
-// game is the node
-// deleted index from map
     render(){
         return(
             <Table>
