@@ -17,8 +17,8 @@ export default function RealtimeData({ game }) {
           return (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{row?.score}</td>
               <td>{row?.username}</td>
+              <td>{row?.score}</td>
             </tr>
           );
         })}
