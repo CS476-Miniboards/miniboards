@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useGame } from "../Models/gameList/GameListContext"
 import { useNavigate } from "react-router-dom";
-import RealtimeData from "../components/realtimeData"
+import RealtimeData from "./RealtimeData"
 
 export default function Board() {
   const { isLoading, currentGame } = useGame();
