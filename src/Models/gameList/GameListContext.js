@@ -45,7 +45,7 @@ export function GameListProvider({ children }) {
     );
 
     return unsubscribe;
-  }, [currentGame]);
+  }, [currentGame?.ID]);
 
   const value = {
     currentGame,

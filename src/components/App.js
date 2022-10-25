@@ -74,9 +74,30 @@ function App() {
                       </RequireAuth>
                     }
                   />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route
+                    path="/signup"
+                    element={
+                      <NoAuth>
+                        <Signup />
+                      </NoAuth>
+                    }
+                  />
+                  <Route
+                    path="/login"
+                    element={
+                      <NoAuth>
+                        <Login />
+                      </NoAuth>
+                    }
+                  />
+                  <Route
+                    path="/forgot-password"
+                    element={
+                      <NoAuth>
+                        <ForgotPassword />
+                      </NoAuth>
+                    }
+                  />
                 </Routes>
               </div>
             </Container>
@@ -89,8 +110,12 @@ function App() {
 
 function RequireAuth({ children, redirectTo }) {
   const { currentUser } = useAuth();
-  console.log(currentUser);
   return currentUser ? children : <Navigate to={redirectTo} />;
+}
+
+function NoAuth({ children }) {
+  const { currentUser } = useAuth();
+  return currentUser ? <Navigate to="/" /> : children;
 }
 
 export default App;
