@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGame } from "../Models/gameList/GameListContext";
 import { useNavigate } from "react-router-dom";
-import { Buffer } from "buffer";
 import parse from "html-react-parser";
 
 export default function Game() {
