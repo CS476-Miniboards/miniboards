@@ -5,7 +5,9 @@ export default function RealtimeData({ game }) {
   return game?.scores ? (
     <Table>
       <thead>
-        <tr>{game?.Name}</tr>
+        <tr>
+          <td>{game?.Name}</td>
+        </tr>
         <tr>
           <th>Position</th>
           <th>Name</th>
