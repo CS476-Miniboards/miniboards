@@ -1,56 +1,67 @@
-import React, {useEffect, useState} from "react";
-import { useGame } from "../Models/gameList/GameListContext"
+import React, { useEffect, useState } from "react";
+import { useGame } from "../Models/gameList/GameListContext";
 import { useNavigate } from "react-router-dom";
-import { Buffer } from 'buffer';
-import parse from 'html-react-parser';
+import { Buffer } from "buffer";
+import parse from "html-react-parser";
 
 export default function Game() {
   const { isLoading, currentGame } = useGame();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [currentScore, setCurrentScore] = useState("")
-  const [gameOver, setGameOver] = useState(false)
-  
+  const [currentScore, setCurrentScore] = useState("");
+  const [gameOver, setGameOver] = useState(false);
+
   useEffect(() => {
     if (currentGame == null) {
-      navigate("/")
+      navigate("/");
     }
-  }, [currentGame,navigate])
+  }, [currentGame, navigate]);
 
-
-  window.addEventListener("message", (event)=> {
-    if(event?.data?.stateKey === "S/Score") {
-      const encodedData = base64ToHexFunc(event.data.stateValue)
-      setCurrentScore(parseInt(encodedData,'16'))
+  useEffect(() => {
+    window.addEventListener("message", (event) => {
+      if (event?.data?.stateKey === "S/Score") {
+        const encodedData = base64ToHexFunc(event.data.stateValue);
+        setCurrentScore(parseInt(encodedData, "16"));
       }
 
-      if(event?.data?.stateKey === "S/GameOver") {
-        var value = base64ToHexFunc(event.data.stateValue).toString()
-        if (value == true) {
-          setGameOver(true)
-        }
-        if (value == false) {
-          setGameOver(false)
-        }
-        }
-  })
+      if (event?.data?.stateKey === "S/GameOver") {
+        var isTrue = base64ToHexFunc(event.data.stateValue).toString() === "01";
 
-  function base64ToHexFunc(str) {
-    const encodedData = atob(str)
-    let result = '';
-    for (let i = 0; i < encodedData.length; i++) {
-      const hex = encodedData.charCodeAt(i).toString(16);
-      result += (hex.length === 2 ? hex : '0' + hex);
+        if (isTrue) {
+          setGameOver(true);
+        } else {
+          setGameOver(false);
+        }
+      }
+    });
+
+    function base64ToHexFunc(str) {
+      const encodedData = atob(str);
+      let result = "";
+      for (let i = 0; i < encodedData.length; i++) {
+        const hex = encodedData.charCodeAt(i).toString(16);
+        result += hex.length === 2 ? hex : "0" + hex;
+      }
+      return result;
     }
-    return result;
-  }
+  }, []);
 
-  // window.addEventListener("StorageEvent",(event)=>{console.log(event)})
+  useEffect(() => {
+    if (gameOver) {
+      console.log("Save score: " + currentScore);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameOver]);
 
-  return (isLoading ? <></> :
+  return isLoading ? (
+    <></>
+  ) : (
     <>
-      <div>{currentGame?.Name}  Score: {currentScore}</div>
+      <div>
+        {currentGame?.Name} Score: {currentScore}
+      </div>
       {currentGame ? <div>{parse(currentGame?.Embed)}</div> : <></>}
       <div>{currentGame?.Description}</div>
-    </>)
+    </>
+  );
 }
