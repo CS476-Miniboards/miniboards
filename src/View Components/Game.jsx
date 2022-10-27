@@ -17,7 +17,7 @@ export default function Game() {
   }, [currentGame, navigate]);
 
   useEffect(() => {
-    window.addEventListener("message", (event) => {
+    const handleEvent = (event) => {
       if (event?.data?.stateKey === "S/Score") {
         const encodedData = base64ToHexFunc(event.data.stateValue);
         setCurrentScore(parseInt(encodedData, "16"));
@@ -32,9 +32,9 @@ export default function Game() {
           setGameOver(false);
         }
       }
-    });
+    };
 
-    function base64ToHexFunc(str) {
+    const base64ToHexFunc = (str) => {
       const encodedData = atob(str);
       let result = "";
       for (let i = 0; i < encodedData.length; i++) {
@@ -42,7 +42,13 @@ export default function Game() {
         result += hex.length === 2 ? hex : "0" + hex;
       }
       return result;
-    }
+    };
+
+    window.addEventListener("message", handleEvent);
+
+    return () => {
+      window.removeEventListener("keydown", handleEvent);
+    };
   }, []);
 
   useEffect(() => {
