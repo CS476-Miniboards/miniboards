@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
 
 export default function Game() {
-  const { isLoading, currentGame } = useGame();
+  const { isLoading, currentGame, saveScore } = useGame();
   const navigate = useNavigate();
 
   const [currentScore, setCurrentScore] = useState("");
@@ -53,7 +53,7 @@ export default function Game() {
 
   useEffect(() => {
     if (gameOver) {
-      console.log("Save score: " + currentScore);
+      saveScore(currentScore);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameOver]);
