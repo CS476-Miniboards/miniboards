@@ -39,6 +39,10 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
+  function isAdmin() {
+    return true;
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -56,6 +60,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    isAdmin,
   };
 
   return (

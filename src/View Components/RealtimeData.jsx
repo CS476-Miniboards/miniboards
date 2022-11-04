@@ -1,9 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import { useAuth } from "../Models/auth/AuthContext";
+import { useGame } from "../Models/gameList/GameListContext";
 
 export default function RealtimeData({ game }) {
   const [sortedScores, setSortedScores] = useState([]);
+  const { isAdmin } = useAuth();
+  const { deleteScore } = useGame();
 
   useEffect(() => {
     if (game?.scores) {
@@ -15,6 +19,10 @@ export default function RealtimeData({ game }) {
       );
     }
   }, [game?.scores]);
+
+  function handleDelete(id) {
+    deleteScore(game?.ID, id);
+  }
 
   return game?.scores ? (
     <Table>
@@ -29,11 +37,21 @@ export default function RealtimeData({ game }) {
       </thead>
       <tbody>
         {Object.values(sortedScores).map((row, index) => {
+          console.log(row);
           return (
-            <tr key={index}>
-              <td>{row?.displayName}</td>
-              <td>{row?.score}</td>
-            </tr>
+            <>
+              <tr key={index}>
+                <td>{row?.displayName}</td>
+                <td>{row?.score}</td>
+                {isAdmin ? (
+                  <td>
+                    <button onClick={() => handleDelete(row?.id)}>x</button>
+                  </td>
+                ) : (
+                  <></>
+                )}
+              </tr>
+            </>
           );
         })}
       </tbody>

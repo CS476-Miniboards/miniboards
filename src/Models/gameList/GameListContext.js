@@ -1,4 +1,4 @@
-import { onValue, ref, child, push } from "firebase/database";
+import { onValue, ref, child, push, remove, set } from "firebase/database";
 import React, { useContext, useState, useEffect } from "react";
 import { db } from "../../firebase";
 import { useAuth } from "../auth/AuthContext";
@@ -57,18 +57,17 @@ export function GameListProvider({ children }) {
 
   function saveScore(score) {
     var id = currentGame.ID;
-    push(child(ref(db), `/games/${id}/scores`), {
+    var newScoreRef = push(child(ref(db), `/games/${id}/scores`));
+
+    set(newScoreRef, {
       displayName,
       score,
+      id: newScoreRef.key,
     });
+  }
 
-    // scoresRef.push({ displayName, score });
-
-    // set(ref(db, `/games/${id}/scores`), {
-    //   score: {
-    //     displayName,
-    //   },
-    // });
+  function deleteScore(gameId, scoreId) {
+    remove(ref(db, `/games/${gameId}/scores/${scoreId}`));
   }
 
   const value = {
@@ -76,6 +75,7 @@ export function GameListProvider({ children }) {
     gameList,
     selectGame,
     saveScore,
+    deleteScore,
   };
 
   return (
