@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { onValue, ref } from "firebase/database";
 
 const AuthContext = React.createContext();
 
@@ -10,6 +11,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [adminList, setAdminList] = useState();
 
   async function signup(email, password, name) {
     await auth.createUserWithEmailAndPassword(email, password);
@@ -40,13 +42,27 @@ export function AuthProvider({ children }) {
   }
 
   function isAdmin() {
-    return true;
+    return adminList.contains(currentUser.uid);
   }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onValue(ref(db, "/Admin"), (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        setAdminList([]);
+        Object.values(data).map((adminList) =>
+          setAdminList((oldAdminList) => [...oldAdminList, adminList])
+        );
+      }
     });
 
     return unsubscribe;
