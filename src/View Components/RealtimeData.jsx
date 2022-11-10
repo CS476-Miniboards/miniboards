@@ -37,15 +37,19 @@ export default function RealtimeData({ game }) {
       </thead>
       <tbody>
         {Object.values(sortedScores).map((row, index) => {
-          console.log(row);
           return (
             <>
               <tr key={index}>
                 <td>{row?.displayName}</td>
                 <td>{row?.score}</td>
-                {isAdmin ? (
+                {isAdmin() ? (
                   <td>
-                    <button onClick={() => handleDelete(row?.id)}>x</button>
+                    <button
+                      key={index}
+                      onClick={() => deleteScore(game?.ID, row?.id)}
+                    >
+                      x
+                    </button>
                   </td>
                 ) : (
                   <></>

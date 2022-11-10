@@ -18,6 +18,7 @@ import Home from "./Home";
 import Header from "../Controller components/Header";
 import Board from "../View Components/Board";
 import Game from "../View Components/Game";
+import AdminList from "../View Components/AdminList";
 
 function App() {
   return (
@@ -71,6 +72,14 @@ function App() {
                     element={
                       <RequireAuth redirectTo="/login">
                         <Game />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    path="/admin"
+                    element={
+                      <RequireAuth redirectTo="/login">
+                        <AdminList />
                       </RequireAuth>
                     }
                   />

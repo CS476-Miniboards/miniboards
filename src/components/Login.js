@@ -39,7 +39,7 @@ export default function Login() {
                 type="email"
                 ref={emailRef}
                 required
-                autoCompete="username"
+                autoComplete="username"
               />
             </Form.Group>
             <Form.Group id="password">

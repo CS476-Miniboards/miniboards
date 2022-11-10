@@ -14,6 +14,7 @@ export default function Header() {
   useEffect(() => {
     setDisplayName(currentUser?.displayName);
   }, [currentUser?.displayName]);
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -24,8 +25,16 @@ export default function Header() {
           <NavDropdown title="Games" id="gamesDropdown">
             <GameList type="game" />
           </NavDropdown>
-          <NavDropdown title="Boards" id="gamesDropdown">
+          <NavDropdown title="Boards" id="boardsDropdown">
             <GameList type="board" />
+          </NavDropdown>
+          <NavDropdown title="Admin Functions" id="adminDropdown">
+            <NavDropdown.Item as={Link} to="/admin">
+              Admin List
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/errors">
+              Error Reports
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         {currentUser ? (

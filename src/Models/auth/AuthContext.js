@@ -11,7 +11,11 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [adminList, setAdminList] = useState();
+  const [adminList, setAdminList] = useState([]);
+
+  useEffect(() => {
+    console.log(adminList);
+  }, [adminList]);
 
   async function signup(email, password, name) {
     await auth.createUserWithEmailAndPassword(email, password);
@@ -42,7 +46,7 @@ export function AuthProvider({ children }) {
   }
 
   function isAdmin() {
-    return adminList.contains(currentUser.uid);
+    return adminList.some((uid) => currentUser.uid === uid);
   }
 
   useEffect(() => {
@@ -54,6 +58,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
+  // List of admin users
   useEffect(() => {
     const unsubscribe = onValue(ref(db, "/Admin"), (snapshot) => {
       const data = snapshot.val();
@@ -77,6 +82,7 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     isAdmin,
+    adminList,
   };
 
   return (
