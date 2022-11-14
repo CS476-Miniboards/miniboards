@@ -71,19 +71,6 @@ export function GameListProvider({ children }) {
     remove(ref(db, `/games/${gameId}/scores/${scoreId}`));
   }
 
-  function getDropdownList() {
-    if (loading === false) {
-      if (gameList != null) {
-        setDropdownList([]);
-        Object.values(gameList).map((gameList) =>
-          setDropdownList((oldGameList) => [...oldGameList, gameList?.Name])
-        );
-      }
-    }
-
-    return dropdownList;
-  }
-
   useEffect(() => {
     const unsubscribe = onValue(ref(db, "/games"), (snapshot) => {
       const data = snapshot.val();
