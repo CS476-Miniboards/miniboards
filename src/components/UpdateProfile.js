@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../Models/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
 
 export default function UpdateProfile() {
   const nameRef = useRef();
@@ -34,9 +33,6 @@ export default function UpdateProfile() {
       promises.push(
         currentUser.updateProfile({ displayName: nameRef.current.value })
       );
-
-      const user = auth.currentUser;
-      promises.push(user.notifyPath("user.displayName"));
     }
 
     Promise.all(promises)
@@ -74,6 +70,7 @@ export default function UpdateProfile() {
                 ref={emailRef}
                 required
                 defaultValue={currentUser.email}
+                autoComplete="username"
               />
             </Form.Group>
             <Form.Group id="password">
@@ -82,6 +79,7 @@ export default function UpdateProfile() {
                 type="password"
                 ref={passwordRef}
                 placeholder="Leave blank to keep the same"
+                autoComplete="current-password"
               />
             </Form.Group>
             <Form.Group id="password-confirm">
@@ -90,6 +88,7 @@ export default function UpdateProfile() {
                 type="password"
                 ref={passwordConfirmRef}
                 placeholder="Leave blank to keep the same"
+                autoComplete="new-password"
               />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">

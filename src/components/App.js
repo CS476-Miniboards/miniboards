@@ -1,121 +1,36 @@
 import React from "react";
-import Signup from "./Signup";
 import { Container } from "react-bootstrap";
-import { AuthProvider, useAuth } from "../Models/auth/AuthContext";
+import { AuthProvider } from "../Models/auth/AuthContext";
 import { GameListProvider } from "../Models/gameList/GameListContext";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Dashboard from "../Controller components/Dashboard";
-import Login from "./Login";
-import ForgotPassword from "./ForgotPassword";
-import UpdateProfile from "./UpdateProfile";
-import Home from "./Home";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import Header from "../Controller components/Header";
-import Board from "../View Components/Board";
-import Game from "../View Components/Game";
+import AllRoutes from "../routes/AllRoutes";
+import { AdminProvider } from "../Models/admin/AdminContext";
 
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
-          <GameListProvider>
-            <Header />
-            <Container
-              className="d-flex align-items-center justify-content-center"
-              style={{ minHeight: "100vh" }}
-            >
-              <div className="w-100" style={{ maxWidth: "400px" }}>
-                <Routes>
-                  <Route
-                    exact
-                    path="/"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <Home />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    exact
-                    path="/dashboard"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <Dashboard />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/update-profile"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <UpdateProfile />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/board"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <Board />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/game"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <Game />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/signup"
-                    element={
-                      <NoAuth>
-                        <Signup />
-                      </NoAuth>
-                    }
-                  />
-                  <Route
-                    path="/login"
-                    element={
-                      <NoAuth>
-                        <Login />
-                      </NoAuth>
-                    }
-                  />
-                  <Route
-                    path="/forgot-password"
-                    element={
-                      <NoAuth>
-                        <ForgotPassword />
-                      </NoAuth>
-                    }
-                  />
-                </Routes>
-              </div>
-            </Container>
-          </GameListProvider>
+          <AdminProvider>
+            <GameListProvider>
+              <Header />
+              <Container
+                className="d-flex align-items-center justify-content-center"
+                style={{ minHeight: "80vh" }}
+              >
+                <div className="w-100" style={{ maxWidth: "80%" }}>
+                  <AllRoutes />
+                </div>
+              </Container>
+            </GameListProvider>
+          </AdminProvider>
         </AuthProvider>
       </Router>
     </>
   );
-}
-
-function RequireAuth({ children, redirectTo }) {
-  const { currentUser } = useAuth();
-  return currentUser ? children : <Navigate to={redirectTo} />;
-}
-
-function NoAuth({ children }) {
-  const { currentUser } = useAuth();
-  return currentUser ? <Navigate to="/" /> : children;
 }
 
 export default App;
