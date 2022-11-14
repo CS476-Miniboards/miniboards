@@ -48,7 +48,7 @@ export function AdminProvider({ children }) {
     });
 
     return unsubscribe;
-  }, []);
+  }, [currentUser]);
 
   function submitError(e) {
     var errorReport = {
@@ -67,6 +67,7 @@ export function AdminProvider({ children }) {
       id: newErrorRef.key,
     });
   }
+
   const value = {
     isAdmin,
     adminList,
