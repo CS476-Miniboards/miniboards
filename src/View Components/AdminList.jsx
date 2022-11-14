@@ -1,9 +1,9 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import { useAuth } from "../Models/auth/AuthContext";
+import { useAdmin } from "../Models/admin/AdminContext";
 
 export default function AdminList() {
-  const { adminList } = useAuth();
+  const { adminList } = useAdmin();
 
   return (
     <Table striped bordered hover>

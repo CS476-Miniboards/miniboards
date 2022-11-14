@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { useAuth } from "../Models/auth/AuthContext";
+import { useAdmin } from "../Models/admin/AdminContext";
 import { useGame } from "../Models/gameList/GameListContext";
 
 export default function RealtimeData({ game }) {
   const [sortedScores, setSortedScores] = useState([]);
-  const { isAdmin } = useAuth();
+  const { isAdmin } = useAdmin();
   const { deleteScore } = useGame();
 
   // Keep highscore table updated and sorted in real-time

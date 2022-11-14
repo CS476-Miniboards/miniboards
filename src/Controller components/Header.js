@@ -6,9 +6,11 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import GameList from "../View Components/GameList";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Models/auth/AuthContext";
+import { useAdmin } from "../Models/admin/AdminContext";
 
 export default function Header() {
-  const { currentUser, isAdmin } = useAuth();
+  const { currentUser } = useAuth();
+  const { isAdmin } = useAdmin();
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {

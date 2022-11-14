@@ -7,6 +7,10 @@
     "games": {
       ".read": "true",
       ".write": "auth.uid !== null"
+    },
+    "errors": {
+      ".read": "auth.uid !== null",
+      ".write": "false"
     }
   }
 }

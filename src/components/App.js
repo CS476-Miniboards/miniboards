@@ -7,23 +7,26 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Header from "../Controller components/Header";
 import AllRoutes from "../routes/AllRoutes";
+import { AdminProvider } from "../Models/admin/AdminContext";
 
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
-          <GameListProvider>
-            <Header />
-            <Container
-              className="d-flex align-items-center justify-content-center"
-              style={{ minHeight: "80vh" }}
-            >
-              <div className="w-100" style={{ maxWidth: "400px" }}>
-                <AllRoutes />
-              </div>
-            </Container>
-          </GameListProvider>
+          <AdminProvider>
+            <GameListProvider>
+              <Header />
+              <Container
+                className="d-flex align-items-center justify-content-center"
+                style={{ minHeight: "80vh" }}
+              >
+                <div className="w-100" style={{ maxWidth: "400px" }}>
+                  <AllRoutes />
+                </div>
+              </Container>
+            </GameListProvider>
+          </AdminProvider>
         </AuthProvider>
       </Router>
     </>

@@ -11,6 +11,7 @@ import Game from "../View Components/Game";
 import AdminList from "../View Components/AdminList";
 import Signup from "../components/Signup";
 import ErrorReports from "../View Components/ErrorReports";
+import { useAdmin } from "../Models/admin/AdminContext";
 
 export default function AllRoutes() {
   return (
@@ -112,6 +113,6 @@ function NoAuth({ children }) {
 }
 
 function RequireAdmin({ children, redirectTo }) {
-  const { isAdmin } = useAuth();
+  const { isAdmin } = useAdmin();
   return isAdmin() ? children : <Navigate to={redirectTo} />;
 }

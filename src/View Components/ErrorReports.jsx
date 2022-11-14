@@ -1,17 +1,16 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import { useAuth } from "../Models/auth/AuthContext";
+import { useAdmin } from "../Models/admin/AdminContext";
 
 export default function ErrorReports() {
-  const { adminList } = useAuth();
-
+  const { errorList } = useAdmin();
   return (
     <Table striped bordered hover>
       <tbody>
-        {Object.values(adminList).map((adminList, i) => {
+        {Object.values(errorList).map((errorList, i) => {
           return (
             <tr key={i}>
-              <td>{adminList}</td>
+              <td>{errorList}</td>
             </tr>
           );
         })}
