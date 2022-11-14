@@ -17,7 +17,6 @@ export default function ErrorReport() {
     e.preventDefault();
     const form = e.target;
 
-    console.log(e);
     if (form.checkValidity() === true) {
       setValidated(true);
       try {
