@@ -10,7 +10,7 @@
     },
     "errors": {
       ".read": "auth.uid !== null",
-      ".write": "false"
+      ".write": "auth.uid !== null"
     }
   }
 }

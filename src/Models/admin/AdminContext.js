@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { db } from "../../firebase";
-import { onValue, ref } from "firebase/database";
+import { onValue, ref, child, push, set } from "firebase/database";
 import { useAuth } from "../auth/AuthContext";
 
 const AdminContext = React.createContext();
@@ -50,10 +50,28 @@ export function AdminProvider({ children }) {
     return unsubscribe;
   }, []);
 
+  function submitError(e) {
+    var errorReport = {
+      ErrorSource: e.target[0].value,
+      Report: e.target[1].value,
+      Time: Date.now(),
+    };
+    saveError(errorReport);
+  }
+
+  function saveError(error) {
+    var newErrorRef = push(child(ref(db), `/errors`));
+
+    set(newErrorRef, {
+      ...error,
+      id: newErrorRef.key,
+    });
+  }
   const value = {
     isAdmin,
     adminList,
     errorList,
+    submitError,
   };
 
   return (

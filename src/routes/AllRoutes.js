@@ -12,6 +12,7 @@ import Game from "../View Components/Game";
 import AdminList from "../View Components/AdminList";
 import Signup from "../components/Signup";
 import ErrorReports from "../View Components/ErrorReports";
+import ErrorReport from "../components/ErrorReport";
 
 export default function AllRoutes() {
   return (
@@ -96,6 +97,14 @@ export default function AllRoutes() {
           <RequireAdmin redirectTo="/login">
             <ErrorReports />
           </RequireAdmin>
+        }
+      />
+      <Route
+        path="/report-error"
+        element={
+          <RequireAuth redirectTo="/login">
+            <ErrorReport />
+          </RequireAuth>
         }
       />
     </Routes>

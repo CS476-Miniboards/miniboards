@@ -21,7 +21,7 @@ function App() {
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "80vh" }}
               >
-                <div className="w-100" style={{ maxWidth: "400px" }}>
+                <div className="w-100" style={{ maxWidth: "80%" }}>
                   <AllRoutes />
                 </div>
               </Container>
