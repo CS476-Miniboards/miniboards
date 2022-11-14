@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../Models/auth/AuthContext";
+import { useAdmin } from "../Models/admin/AdminContext";
 import Dashboard from "../Controller components/Dashboard";
 import Login from "../components/Login";
 import ForgotPassword from "../components/ForgotPassword";
@@ -11,7 +12,6 @@ import Game from "../View Components/Game";
 import AdminList from "../View Components/AdminList";
 import Signup from "../components/Signup";
 import ErrorReports from "../View Components/ErrorReports";
-import { useAdmin } from "../Models/admin/AdminContext";
 
 export default function AllRoutes() {
   return (
@@ -102,16 +102,19 @@ export default function AllRoutes() {
   );
 }
 
+// Must be authenticated to access this route
 function RequireAuth({ children, redirectTo }) {
   const { currentUser } = useAuth();
   return currentUser ? children : <Navigate to={redirectTo} />;
 }
 
+// Authentication not required to access this route
 function NoAuth({ children }) {
   const { currentUser } = useAuth();
   return currentUser ? <Navigate to="/" /> : children;
 }
 
+// Admin permission required to access this route
 function RequireAdmin({ children, redirectTo }) {
   const { isAdmin } = useAdmin();
   return isAdmin() ? children : <Navigate to={redirectTo} />;
