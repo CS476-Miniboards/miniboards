@@ -11,6 +11,7 @@ export default function ErrorReports() {
           <th>Problem Source</th>
           <th>Error Report</th>
           <th>Reported Time</th>
+          <th>Report By</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,7 @@ export default function ErrorReports() {
                 <td>{errorList?.ErrorSource}</td>
                 <td>{errorList?.Report}</td>
                 <td>{date}</td>
+                <td>{errorList?.Email}</td>
               </tr>
             );
           })

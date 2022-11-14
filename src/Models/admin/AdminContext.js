@@ -64,6 +64,7 @@ export function AdminProvider({ children }) {
 
     set(newErrorRef, {
       ...error,
+      Email: currentUser.email,
       id: newErrorRef.key,
     });
   }
