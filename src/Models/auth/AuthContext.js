@@ -13,10 +13,6 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [adminList, setAdminList] = useState([]);
 
-  useEffect(() => {
-    console.log(adminList);
-  }, [adminList]);
-
   async function signup(email, password, name) {
     await auth.createUserWithEmailAndPassword(email, password);
     const user = auth.currentUser;
@@ -45,10 +41,12 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
+  // Compares current ID to the database containing admin id's
   function isAdmin() {
-    return adminList.some((uid) => currentUser.uid === uid);
+    return adminList.some((uid) => currentUser?.uid === uid);
   }
 
+  // Update current user
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);

@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { useAuth } from "../Models/auth/AuthContext";
 
-export default function AdminList() {
+export default function ErrorReports() {
   const { adminList } = useAuth();
 
   return (

@@ -9,6 +9,7 @@ export default function RealtimeData({ game }) {
   const { isAdmin } = useAuth();
   const { deleteScore } = useGame();
 
+  // Keep highscore table updated and sorted in real-time
   useEffect(() => {
     if (game?.scores) {
       setSortedScores([]);
@@ -20,12 +21,8 @@ export default function RealtimeData({ game }) {
     }
   }, [game?.scores]);
 
-  function handleDelete(id) {
-    deleteScore(game?.ID, id);
-  }
-
   return game?.scores ? (
-    <Table>
+    <Table borderless>
       <thead>
         <tr>
           <td>{game?.Name}</td>
@@ -38,29 +35,28 @@ export default function RealtimeData({ game }) {
       <tbody>
         {Object.values(sortedScores).map((row, index) => {
           return (
-            <>
-              <tr key={index}>
-                <td>{row?.displayName}</td>
-                <td>{row?.score}</td>
-                {isAdmin() ? (
-                  <td>
-                    <button
-                      key={index}
-                      onClick={() => deleteScore(game?.ID, row?.id)}
-                    >
-                      x
-                    </button>
-                  </td>
-                ) : (
-                  <></>
-                )}
-              </tr>
-            </>
+            <tr key={index}>
+              <td>{row?.displayName}</td>
+              <td>{row?.score}</td>
+              {isAdmin() && (
+                <td>
+                  <button
+                    key={index}
+                    onClick={() => deleteScore(game?.ID, row?.id)}
+                  >
+                    Delete Score
+                  </button>
+                </td>
+              )}
+            </tr>
           );
         })}
       </tbody>
     </Table>
   ) : (
-    <></>
+    <>
+      No scores have been submitted for this game yet! Play the game, own the
+      leaderboards!
+    </>
   );
 }

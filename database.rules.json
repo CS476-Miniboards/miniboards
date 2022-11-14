@@ -1,8 +1,9 @@
 {
   "rules": {
-    ".read": "auth.uid !== null",
-    ".write": "auth.uid !== null",
-      
+    "Admin": {
+      ".read": "auth.uid !== null",
+      ".write": "false"
+    },
     "games": {
       ".read": "true",
       ".write": "auth.uid !== null"

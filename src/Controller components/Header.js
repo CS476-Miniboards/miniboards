@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Models/auth/AuthContext";
 
 export default function Header() {
-  const { currentUser } = useAuth();
+  const { currentUser, isAdmin } = useAuth();
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
@@ -28,14 +28,16 @@ export default function Header() {
           <NavDropdown title="Boards" id="boardsDropdown">
             <GameList type="board" />
           </NavDropdown>
-          <NavDropdown title="Admin Functions" id="adminDropdown">
-            <NavDropdown.Item as={Link} to="/admin">
-              Admin List
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/errors">
-              Error Reports
-            </NavDropdown.Item>
-          </NavDropdown>
+          {isAdmin() && (
+            <NavDropdown title="Admin Functions" id="adminDropdown">
+              <NavDropdown.Item as={Link} to="/admin">
+                Admin List
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/errors">
+                Error Reports
+              </NavDropdown.Item>
+            </NavDropdown>
+          )}
         </Nav>
         {currentUser ? (
           <>
