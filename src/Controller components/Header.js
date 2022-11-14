@@ -41,17 +41,13 @@ export default function Header() {
             </NavDropdown>
           )}
         </Nav>
-        {currentUser ? (
-          <>
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>Signed in as:&nbsp;</Navbar.Text>
-              <Link style={{ color: "var(--bs-navbar-color)" }} to="/dashboard">
-                {displayName}
-              </Link>
-            </Navbar.Collapse>
-          </>
-        ) : (
-          <></>
+        {currentUser && (
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>Signed in as:&nbsp;</Navbar.Text>
+            <Link style={{ color: "var(--bs-navbar-color)" }} to="/dashboard">
+              {displayName}
+            </Link>
+          </Navbar.Collapse>
         )}
       </Container>
     </Navbar>
