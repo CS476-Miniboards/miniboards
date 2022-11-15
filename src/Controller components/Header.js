@@ -12,7 +12,6 @@ export default function Header() {
   const { currentUser } = useAuth();
   const { isAdmin } = useAdmin();
   const [displayName, setDisplayName] = useState("");
-  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     setDisplayName(currentUser?.displayName);
