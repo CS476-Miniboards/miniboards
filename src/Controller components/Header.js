@@ -12,13 +12,14 @@ export default function Header() {
   const { currentUser } = useAuth();
   const { isAdmin } = useAdmin();
   const [displayName, setDisplayName] = useState("");
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     setDisplayName(currentUser?.displayName);
   }, [currentUser?.displayName]);
 
   return (
-    <Navbar collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
         <Navbar.Toggle />
         <Nav.Link as={Link} to="/">
@@ -34,10 +35,10 @@ export default function Header() {
             </NavDropdown>
             {isAdmin() && (
               <NavDropdown title="Admin Functions" id="adminDropdown">
-                <NavDropdown.Item as={Link} to="/admin">
+                <NavDropdown.Item eventKey="collapse" as={Link} to="/admin">
                   Admin List
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/errors">
+                <NavDropdown.Item eventKey="collapse" as={Link} to="/errors">
                   Error Reports
                 </NavDropdown.Item>
               </NavDropdown>
