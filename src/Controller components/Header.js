@@ -18,37 +18,40 @@ export default function Header() {
   }, [currentUser?.displayName]);
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
+        <Navbar.Toggle />
         <Nav.Link as={Link} to="/">
           <Navbar.Brand>Miniboards</Navbar.Brand>
         </Nav.Link>
-        <Nav className="me-auto">
-          <NavDropdown title="Games" id="gamesDropdown">
-            <GameList type="game" />
-          </NavDropdown>
-          <NavDropdown title="Boards" id="boardsDropdown">
-            <GameList type="board" />
-          </NavDropdown>
-          {isAdmin() && (
-            <NavDropdown title="Admin Functions" id="adminDropdown">
-              <NavDropdown.Item as={Link} to="/admin">
-                Admin List
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/errors">
-                Error Reports
-              </NavDropdown.Item>
+        <Navbar.Collapse>
+          <Nav className="me-auto">
+            <NavDropdown title="Games" id="gamesDropdown">
+              <GameList type="game" />
             </NavDropdown>
+            <NavDropdown title="Boards" id="boardsDropdown">
+              <GameList type="board" />
+            </NavDropdown>
+            {isAdmin() && (
+              <NavDropdown title="Admin Functions" id="adminDropdown">
+                <NavDropdown.Item eventKey="collapse" as={Link} to="/admin">
+                  Admin List
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey="collapse" as={Link} to="/errors">
+                  Error Reports
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
+          </Nav>
+          {currentUser && (
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>Signed in as:&nbsp;</Navbar.Text>
+              <Link style={{ color: "var(--bs-navbar-color)" }} to="/dashboard">
+                {displayName}
+              </Link>
+            </Navbar.Collapse>
           )}
-        </Nav>
-        {currentUser && (
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>Signed in as:&nbsp;</Navbar.Text>
-            <Link style={{ color: "var(--bs-navbar-color)" }} to="/dashboard">
-              {displayName}
-            </Link>
-          </Navbar.Collapse>
-        )}
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
