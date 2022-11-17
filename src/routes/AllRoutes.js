@@ -107,6 +107,7 @@ export default function AllRoutes() {
           </RequireAuth>
         }
       />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

@@ -1,8 +1,35 @@
 import React from "react";
+import { Card, Row } from "react-bootstrap";
+import { useGame } from "../Models/gameList/GameListContext";
 
 export default function Home() {
+  const { gameList, selectGame } = useGame();
+
+  function handleOnClick(game) {
+    selectGame(game);
+  }
 
   return (
-    <>Homepage</>
-  )
+    <Row xs={1} sm={2} md={3} lg={4}>
+      {Object.values(gameList).map((game, index) => {
+        return (
+          <Card
+            key={index}
+            style={{
+              width: "18rem",
+              margin: "8px auto",
+              padding: "0px",
+            }}
+            onClick={() => handleOnClick(game)}
+          >
+            <Card.Img variant="top" src={game.ImageURL} />
+            <Card.Body>
+              <Card.Title>{game.Name}</Card.Title>
+              <Card.Text>{game.Description}</Card.Text>
+            </Card.Body>
+          </Card>
+        );
+      })}
+    </Row>
+  );
 }
