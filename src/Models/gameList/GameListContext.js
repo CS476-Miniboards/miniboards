@@ -28,7 +28,7 @@ export function GameListProvider({ children }) {
       if (data !== null) {
         setGameList([]);
         setDropdownList([]);
-        Object.values(data).map((gameList) => {
+        Object.values(data).forEach((gameList) => {
           setGameList((oldGameList) => [...oldGameList, gameList]);
           setDropdownList((oldGameList) => [...oldGameList, gameList?.Name]);
         });
@@ -43,6 +43,7 @@ export function GameListProvider({ children }) {
     setCurrentGame(game);
   }
 
+  // Update current game highscores etc
   useEffect(() => {
     const unsubscribe = onValue(
       ref(db, "/games/" + currentGame?.ID),

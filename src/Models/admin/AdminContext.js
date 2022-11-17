@@ -18,7 +18,7 @@ export function AdminProvider({ children }) {
   // Compares current ID to the database containing admin id's
   function isAdmin() {
     for (const [key, value] of Object.values(adminList)) {
-      if (value === currentUser?.uid) return true;
+      if (value === currentUser?.uid && key !== null) return true;
     }
     return false;
   }
