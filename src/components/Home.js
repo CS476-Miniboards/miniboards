@@ -1,12 +1,15 @@
 import React from "react";
 import { Card, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useGame } from "../Models/gameList/GameListContext";
 
 export default function Home() {
   const { gameList, selectGame } = useGame();
+  const navigate = useNavigate();
 
   function handleOnClick(game) {
     selectGame(game);
+    navigate("/game");
   }
 
   return (
@@ -19,6 +22,7 @@ export default function Home() {
               width: "18rem",
               margin: "8px auto",
               padding: "0px",
+              textDecoration: "none",
             }}
             onClick={() => handleOnClick(game)}
           >
