@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../Models/gameList/GameListContext";
 

@@ -43,6 +43,21 @@ export function GameListProvider({ children }) {
     setCurrentGame(game);
   }
 
+  useEffect(() => {
+    const unsubscribe = onValue(
+      ref(db, "/games/" + currentGame?.ID),
+      (snapshot) => {
+        const data = snapshot.val();
+        if (data !== null) {
+          setCurrentGame(data);
+        }
+        setLoading(false);
+      }
+    );
+
+    return unsubscribe;
+  }, [currentGame?.ID]);
+
   function saveScore(score) {
     var id = currentGame.ID;
     var newScoreRef = push(child(ref(db), `/games/${id}/scores`));
