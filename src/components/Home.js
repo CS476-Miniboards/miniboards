@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../Models/gameList/GameListContext";
 
@@ -13,7 +13,7 @@ export default function Home() {
   }
 
   return (
-    <Row xs={1} sm={2} md={3} lg={4}>
+    <Row xs={1} sm={2} md={3} lg={4} style={{ margin: "8px" }}>
       {Object.values(gameList).map((game, index) => {
         return (
           <Card
@@ -22,7 +22,6 @@ export default function Home() {
               width: "18rem",
               margin: "8px auto",
               padding: "0px",
-              textDecoration: "none",
             }}
             onClick={() => handleOnClick(game)}
           >

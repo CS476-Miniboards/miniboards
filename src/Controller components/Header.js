@@ -18,7 +18,7 @@ export default function Header() {
   }, [currentUser?.displayName]);
 
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="xl" bg="dark" variant="dark">
       <Container>
         <Navbar.Toggle />
         <Nav.Link as={Link} to="/">
