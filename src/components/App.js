@@ -17,7 +17,7 @@ function App() {
           <AdminProvider>
             <GameListProvider>
               <Header />
-              <Container style={{ height: "calc(100vh - 60px)" }}>
+              <Container>
                 <AllRoutes />
               </Container>
             </GameListProvider>
