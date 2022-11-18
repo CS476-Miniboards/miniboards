@@ -17,6 +17,7 @@ export default function Home() {
       {Object.values(gameList).map((game, index) => {
         return (
           <Card
+            className="game-card"
             key={index}
             style={{
               width: "18rem",

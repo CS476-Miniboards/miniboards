@@ -17,13 +17,8 @@ function App() {
           <AdminProvider>
             <GameListProvider>
               <Header />
-              <Container
-                className="d-flex align-items-center justify-content-center"
-                style={{ minHeight: "80vh" }}
-              >
-                <div className="w-100" style={{ maxWidth: "80%" }}>
-                  <AllRoutes />
-                </div>
+              <Container style={{ height: "calc(100vh - 60px)" }}>
+                <AllRoutes />
               </Container>
             </GameListProvider>
           </AdminProvider>
