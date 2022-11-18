@@ -17,7 +17,10 @@ export function AdminProvider({ children }) {
 
   // Compares current ID to the database containing admin id's
   function isAdmin() {
-    return adminList.some((uid) => currentUser?.uid === uid);
+    for (const [key, value] of Object.values(adminList)) {
+      if (value === currentUser?.uid && key !== null) return true;
+    }
+    return false;
   }
 
   // List of admin users
@@ -26,7 +29,7 @@ export function AdminProvider({ children }) {
       const data = snapshot.val();
       if (data !== null) {
         setAdminList([]);
-        Object.values(data).map((adminList) =>
+        Object.entries(data).map((adminList) =>
           setAdminList((oldAdminList) => [...oldAdminList, adminList])
         );
       }

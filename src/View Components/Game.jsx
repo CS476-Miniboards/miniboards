@@ -58,15 +58,7 @@ export default function Game() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameOver]);
 
-  return isLoading ? (
-    <></>
-  ) : (
-    <>
-      <div>
-        {currentGame?.Name} Score: {currentScore}
-      </div>
-      {currentGame ? <div>{parse(currentGame?.Embed)}</div> : <></>}
-      <div>{currentGame?.Description}</div>
-    </>
+  return (
+    !isLoading && <>{currentGame && <div>{parse(currentGame?.Embed)}</div>}</>
   );
 }

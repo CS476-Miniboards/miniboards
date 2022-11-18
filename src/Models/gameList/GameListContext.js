@@ -27,9 +27,11 @@ export function GameListProvider({ children }) {
       const data = snapshot.val();
       if (data !== null) {
         setGameList([]);
-        Object.values(data).map((gameList) =>
-          setGameList((oldGameList) => [...oldGameList, gameList])
-        );
+        setDropdownList([]);
+        Object.values(data).forEach((gameList) => {
+          setGameList((oldGameList) => [...oldGameList, gameList]);
+          setDropdownList((oldGameList) => [...oldGameList, gameList?.Name]);
+        });
       }
       setLoading(false);
     });
@@ -41,6 +43,7 @@ export function GameListProvider({ children }) {
     setCurrentGame(game);
   }
 
+  // Update current game highscores etc
   useEffect(() => {
     const unsubscribe = onValue(
       ref(db, "/games/" + currentGame?.ID),
@@ -70,21 +73,6 @@ export function GameListProvider({ children }) {
   function deleteScore(gameId, scoreId) {
     remove(ref(db, `/games/${gameId}/scores/${scoreId}`));
   }
-
-  useEffect(() => {
-    const unsubscribe = onValue(ref(db, "/games"), (snapshot) => {
-      const data = snapshot.val();
-      if (data !== null) {
-        setDropdownList([]);
-        Object.values(data).map((gameList) =>
-          setDropdownList((oldGameList) => [...oldGameList, gameList?.Name])
-        );
-      }
-      setLoading(false);
-    });
-
-    return unsubscribe;
-  }, []);
 
   const value = {
     currentGame,

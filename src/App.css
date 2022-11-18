@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Press Start 2P");
+
+body {
+  font-family: "Press Start 2P", sans-serif;
+  background-color: #eb7dff;
+}
+
+.bg-dark {
+  background-color: #a5dbfe !important;
+}
+
+.nav-link {
+  color: #512a8e;
+}
+
+.navbar-text {
+  color: #512a8e;
+}
+
+.navbar-dark {
+  --bs-navbar-color: #776594;
+  --bs-navbar-hover-color: #512a8e;
+  --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
+  --bs-navbar-active-color: #735d97;
+  --bs-navbar-brand-color: #fff;
+  --bs-navbar-brand-hover-color: #fff;
+}
+
+.card-body {
+  background-color: #ffe400;
+  color: #512a8e;
+}
+
+.navbar {
+  border-bottom: 4px solid #512a8e;
+}
+
+.card {
+  --bs-card-border-width: 4px;
+  --bs-card-border-color: #512a8e;
+  --bs-card-inner-border-radius: 0px;
+}

@@ -7,11 +7,18 @@ export default function AdminList() {
 
   return (
     <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Admin Name</th>
+          <th>UUID</th>
+        </tr>
+      </thead>
       <tbody>
         {Object.values(adminList).map((adminList, i) => {
           return (
             <tr key={i}>
-              <td>{adminList}</td>
+              <td>{adminList[0]}</td>
+              <td>{adminList[1]}</td>
             </tr>
           );
         })}

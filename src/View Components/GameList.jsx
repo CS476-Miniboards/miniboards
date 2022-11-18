@@ -20,6 +20,7 @@ export default function GameList({ type }) {
         to={type}
         key={i}
         onClick={() => handleClick(game)}
+        active={false}
       >
         {game.Name}
       </NavDropdown.Item>

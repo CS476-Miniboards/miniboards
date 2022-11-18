@@ -18,7 +18,7 @@ export default function Header() {
   }, [currentUser?.displayName]);
 
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="xl" bg="dark" variant="dark">
       <Container>
         <Navbar.Toggle />
         <Nav.Link as={Link} to="/">
@@ -34,10 +34,20 @@ export default function Header() {
             </NavDropdown>
             {isAdmin() && (
               <NavDropdown title="Admin Functions" id="adminDropdown">
-                <NavDropdown.Item eventKey="collapse" as={Link} to="/admin">
+                <NavDropdown.Item
+                  eventKey="collapse"
+                  as={Link}
+                  to="/admin"
+                  active={false}
+                >
                   Admin List
                 </NavDropdown.Item>
-                <NavDropdown.Item eventKey="collapse" as={Link} to="/errors">
+                <NavDropdown.Item
+                  eventKey="collapse"
+                  as={Link}
+                  to="/errors"
+                  active={false}
+                >
                   Error Reports
                 </NavDropdown.Item>
               </NavDropdown>
