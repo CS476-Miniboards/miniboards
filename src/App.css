@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Press Start 2P");
 
+html,
 body {
   font-family: "Press Start 2P", sans-serif;
   background-color: #eb7dff;
+  height: 100%;
 }
 
 .bg-dark {
@@ -39,4 +41,9 @@ body {
   --bs-card-border-width: 4px;
   --bs-card-border-color: #512a8e;
   --bs-card-inner-border-radius: 0px;
+}
+
+.game-card:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, 0.4);
 }

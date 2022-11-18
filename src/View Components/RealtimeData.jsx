@@ -22,37 +22,37 @@ export default function RealtimeData({ game }) {
   }, [game?.scores]);
 
   return game?.scores ? (
-    <Table borderless>
-      <thead>
-        <tr>
-          <td>{game?.Name}</td>
-        </tr>
-        <tr>
-          <th>Name</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.values(sortedScores).map((row, index) => {
-          return (
-            <tr key={index}>
-              <td>{row?.displayName}</td>
-              <td>{row?.score}</td>
-              {isAdmin() && (
-                <td>
-                  <button
-                    key={index}
-                    onClick={() => deleteScore(game?.ID, row?.id)}
-                  >
-                    Delete Score
-                  </button>
-                </td>
-              )}
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
+    <>
+      <h1>{game?.Name}</h1>
+      <Table striped borderless size="sm" responsive>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.values(sortedScores).map((row, index) => {
+            return (
+              <tr key={index}>
+                <td>{row?.displayName}</td>
+                <td>{row?.score}</td>
+                {isAdmin() && (
+                  <td>
+                    <button
+                      key={index}
+                      onClick={() => deleteScore(game?.ID, row?.id)}
+                    >
+                      Delete Score
+                    </button>
+                  </td>
+                )}
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </>
   ) : (
     <>
       No scores have been submitted for this game yet! Play the game, own the
