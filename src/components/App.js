@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { AuthProvider } from "../Models/auth/AuthContext";
 import { GameListProvider } from "../Models/gameList/GameListContext";
 
