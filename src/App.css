@@ -59,10 +59,12 @@ body {
   margin: auto;
   top: 68px;
   position: relative;
+  overflow: hidden;
 }
 
 .game-div {
   margin: auto;
+  overflow: hidden;
 }
 
 /* 
