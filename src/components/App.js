@@ -17,9 +17,9 @@ function App() {
           <AdminProvider>
             <GameListProvider>
               <Header />
-              <Container>
+              <div className="main-div">
                 <AllRoutes />
-              </Container>
+              </div>
             </GameListProvider>
           </AdminProvider>
         </AuthProvider>
