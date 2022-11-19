@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Press Start 2P");
 
 :root {
-  --game-height: calc(100vh - 92px);
+  --game-height: calc((100vh - 80px));
   --game-width: calc(var(--game-height) * (17 / 20));
-  --game-min-width: calc(100vw - 64px);
-  --game-min-height: calc(100vh - 60px);
+  --game-max-width: calc(100vw - 32px);
+  --game-max-height: calc(100vh - 60px);
 }
 
 html,
@@ -42,7 +42,6 @@ body {
 
 .navbar {
   border-bottom: 4px solid #512a8e;
-  z-index: 99;
 }
 
 .card {
@@ -53,25 +52,20 @@ body {
 
 .game-card:hover {
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(145, 92, 182, 0.4);
-}
-
-.game-player {
-  height: 80%;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, 0.8);
 }
 
 .main-div {
-  margin: 8px;
+  margin: auto;
+  top: 68px;
+  position: relative;
 }
 
 .game-div {
   margin: auto;
 }
 
-/* .cards {
-  position: relative;
-} */
-
-/* * {
+/* 
+* {
   border: 1px solid red;
 } */
