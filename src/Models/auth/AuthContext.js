@@ -10,13 +10,13 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [displayName, setDisplayName] = useState("");
 
   async function signup(email, password, name) {
     await auth.createUserWithEmailAndPassword(email, password);
     const user = auth.currentUser;
-    return await user
-      .updateProfile({ displayName: name })
-      .then((user) => user.notifyPath("user.displayName"));
+    setDisplayName(name);
+    return await user.updateProfile({ displayName: name });
   }
 
   function login(email, password) {
@@ -39,10 +39,16 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
+  function updateDisplayName(name) {
+    setDisplayName(name);
+    return currentUser.updateProfile({ displayName: name });
+  }
+
   // Update current user
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
+      setDisplayName(user?.displayName);
       setLoading(false);
     });
 
@@ -57,6 +63,8 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    updateDisplayName,
+    displayName,
   };
 
   return (

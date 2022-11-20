@@ -9,12 +9,14 @@ export default function UpdateProfile() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { currentUser, updatePassword, updateEmail } = useAuth();
+  const { currentUser, updatePassword, updateEmail, updateDisplayName } =
+    useAuth();
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
@@ -31,17 +33,15 @@ export default function UpdateProfile() {
       promises.push(updatePassword(passwordRef.current.value));
     }
     if (nameRef.current.value !== currentUser.displayName) {
-      promises.push(
-        currentUser.updateProfile({ displayName: nameRef.current.value })
-      );
+      promises.push(updateDisplayName(nameRef.current.value));
     }
 
     Promise.all(promises)
       .then(() => {
         navigate("/");
       })
-      .catch(() => {
-        setError("Failed to update account");
+      .catch((error) => {
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);

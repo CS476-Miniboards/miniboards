@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { useAuth } from "../Models/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -28,15 +28,15 @@ export default function Signup() {
         nameRef.current.value
       );
       navigate("/");
-    } catch {
-      setError("Failed to create an account");
+    } catch (e) {
+      setError(e.message);
     }
 
     setLoading(false);
   }
 
   return (
-    <>
+    <Container>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
@@ -67,6 +67,6 @@ export default function Signup() {
       <div className="w-100 text-center mt-2">
         Already have an account? <Link to="/login">Log In</Link>
       </div>
-    </>
+    </Container>
   );
 }

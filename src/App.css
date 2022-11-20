@@ -73,7 +73,25 @@ body {
   overflow: hidden;
 }
 
-/* 
-* {
-  border: 1px solid red;
-} */
+@keyframes float {
+  0% {
+    text-shadow: 2px 5px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    text-shadow: 5px 10px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-5px);
+  }
+  100% {
+    text-shadow: 2px 5px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+}
+
+.keyboard-controls {
+  text-align: center;
+  margin: auto;
+  color: #fff;
+  transform: translatey(0px);
+  animation: float 2s ease-in-out infinite;
+}
