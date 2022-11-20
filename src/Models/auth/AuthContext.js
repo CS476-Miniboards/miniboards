@@ -15,9 +15,8 @@ export function AuthProvider({ children }) {
   async function signup(email, password, name) {
     await auth.createUserWithEmailAndPassword(email, password);
     const user = auth.currentUser;
-    return await user
-      .updateProfile({ displayName: name })
-      .then((user) => setDisplayName(user.displayName));
+    setDisplayName(name);
+    return await user.updateProfile({ displayName: name });
   }
 
   function login(email, password) {
@@ -40,9 +39,9 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
-  function forceUpdateUser() {
-    console.log("Force Update");
-    return auth.currentUser.getIdToken();
+  function updateDisplayName(name) {
+    setDisplayName(name);
+    return currentUser.updateProfile({ displayName: name });
   }
 
   // Update current user
@@ -56,17 +55,6 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  // // Update current user
-  // useEffect(() => {
-  //   const unsubscribe = auth?.userChanges().listen((user) => {
-  //     console.log(user);
-  //     setCurrentUser(user);
-  //     setLoading(false);
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
-
   const value = {
     currentUser,
     login,
@@ -75,7 +63,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
-    forceUpdateUser,
+    updateDisplayName,
     displayName,
   };
 

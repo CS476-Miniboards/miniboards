@@ -9,8 +9,9 @@ export default function UpdateProfile() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { currentUser, updatePassword, updateEmail, forceUpdateUser } =
+  const { currentUser, updatePassword, updateEmail, updateDisplayName } =
     useAuth();
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -32,11 +33,7 @@ export default function UpdateProfile() {
       promises.push(updatePassword(passwordRef.current.value));
     }
     if (nameRef.current.value !== currentUser.displayName) {
-      promises.push(
-        await currentUser.updateProfile({ displayName: nameRef.current.value })
-      );
-      promises.push(await currentUser.reload());
-      promises.push(forceUpdateUser());
+      promises.push(updateDisplayName(nameRef.current.value));
     }
 
     Promise.all(promises)
