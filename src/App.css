@@ -64,10 +64,13 @@ body {
 
 .game-div {
   margin: auto;
-  height: 100%;
   overflow: hidden;
-  touch-action: none;
-  overflow-y: hidden;
+}
+.game-div-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 68px;
+  overflow: hidden;
 }
 
 /* 

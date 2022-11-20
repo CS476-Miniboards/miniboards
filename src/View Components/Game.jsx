@@ -62,7 +62,9 @@ export default function Game() {
     !isLoading && (
       <>
         {currentGame && (
-          <div className="game-div">{parse(currentGame?.Embed)}</div>
+          <div className="game-div-wrapper">
+            <div className="game-div">{parse(currentGame?.Embed)}</div>
+          </div>
         )}
       </>
     )
