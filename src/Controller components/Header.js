@@ -9,19 +9,18 @@ import { useAuth } from "../Models/auth/AuthContext";
 import { useAdmin } from "../Models/admin/AdminContext";
 
 export default function Header() {
-  const { currentUser } = useAuth();
+  const { currentUser, displayName } = useAuth();
   const { isAdmin } = useAdmin();
-  const [displayName, setDisplayName] = useState("");
 
-  useEffect(() => {
-    setDisplayName(currentUser?.displayName);
-  }, [currentUser?.displayName]);
+  // useEffect(() => {
+  //   setDisplayName(currentUser?.displayName);
+  // }, [currentUser?.displayName]);
 
   return (
     <Navbar collapseOnSelect expand="xl" bg="dark" variant="dark" fixed="top">
       <Container>
         <Navbar.Toggle />
-        <Nav.Link as={Link} to="/">
+        <Nav.Link eventKey="collapse" as={Link} to="/">
           <Navbar.Brand>Miniboards</Navbar.Brand>
         </Nav.Link>
         <Navbar.Collapse>
