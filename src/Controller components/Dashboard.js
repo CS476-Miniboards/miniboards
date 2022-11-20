@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../Models/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -20,7 +21,7 @@ export default function Dashboard() {
   }
 
   return (
-    <>
+    <Container>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
@@ -44,6 +45,6 @@ export default function Dashboard() {
           Log Out
         </Button>
       </div>
-    </>
+    </Container>
   );
 }

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../Models/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 export default function Login() {
   const emailRef = useRef();
@@ -27,7 +28,7 @@ export default function Login() {
   }
 
   return (
-    <div className="w-100" style={{ maxWidth: "400px" }}>
+    <Container className="w-100" style={{ maxWidth: "400px" }}>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
@@ -63,6 +64,6 @@ export default function Login() {
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
-    </div>
+    </Container>
   );
 }

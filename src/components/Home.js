@@ -13,7 +13,14 @@ export default function Home() {
   }
 
   return (
-    <Row xs={1} sm={2} md={3} lg={4} style={{ margin: "8px" }}>
+    <Row
+      className="cards"
+      xs={1}
+      sm={2}
+      md={3}
+      lg={4}
+      style={{ margin: "8px" }}
+    >
       {Object.values(gameList).map((game, index) => {
         return (
           <Card

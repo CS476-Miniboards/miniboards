@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Press Start 2P");
 
+:root {
+  --game-height: calc((100vh - 80px));
+  --game-width: calc(var(--game-height) * (17 / 20));
+  --game-max-width: calc(100vw - 32px);
+  --game-max-height: calc(100vh - 60px);
+}
+
 html,
 body {
   font-family: "Press Start 2P", sans-serif;
@@ -45,5 +52,28 @@ body {
 
 .game-card:hover {
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(145, 92, 182, 0.4);
+  box-shadow: 0 5px 15px rgba(145, 92, 182, 0.8);
 }
+
+.main-div {
+  margin: auto;
+  top: 68px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-div {
+  margin: auto;
+  overflow: hidden;
+}
+.game-div-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 68px;
+  overflow: hidden;
+}
+
+/* 
+* {
+  border: 1px solid red;
+} */

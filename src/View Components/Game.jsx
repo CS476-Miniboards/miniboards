@@ -59,6 +59,14 @@ export default function Game() {
   }, [gameOver]);
 
   return (
-    !isLoading && <>{currentGame && <div>{parse(currentGame?.Embed)}</div>}</>
+    !isLoading && (
+      <>
+        {currentGame && (
+          <div className="game-div-wrapper">
+            <div className="game-div">{parse(currentGame?.Embed)}</div>
+          </div>
+        )}
+      </>
+    )
   );
 }

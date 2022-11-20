@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { AuthProvider } from "../Models/auth/AuthContext";
 import { GameListProvider } from "../Models/gameList/GameListContext";
 
@@ -17,9 +16,9 @@ function App() {
           <AdminProvider>
             <GameListProvider>
               <Header />
-              <Container>
+              <div className="main-div">
                 <AllRoutes />
-              </Container>
+              </div>
             </GameListProvider>
           </AdminProvider>
         </AuthProvider>
