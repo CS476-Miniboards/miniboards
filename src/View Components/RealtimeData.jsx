@@ -17,8 +17,6 @@ export default function RealtimeData({ game }) {
     // eslint-disable-next-line
   }, []);
 
-  //TODO: Move to useGame
-  // Keep highscore table updated and sorted in real-time
   useEffect(() => {
     if (game?.scores) {
       setSortedScores([]);

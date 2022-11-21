@@ -3,15 +3,15 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../Models/auth/AuthContext";
 import { useAdmin } from "../Models/admin/AdminContext";
 import Dashboard from "../Controller components/Dashboard";
-import Login from "../components/Login";
-import ForgotPassword from "../components/ForgotPassword";
-import UpdateProfile from "../components/UpdateProfile";
+import Login from "../Controller components/Login";
+import ForgotPassword from "../Controller components/ForgotPassword";
+import UpdateProfile from "../Controller components/UpdateProfile";
 import Home from "../View Components/Home";
 import Board from "../View Components/Board";
 import Game from "../View Components/Game";
-import Signup from "../components/Signup";
+import Signup from "../Controller components/Signup";
 import ErrorReports from "../View Components/ErrorReports";
-import ReportError from "../components/ReportError";
+import ReportError from "../Controller components/ReportError";
 
 export default function AllRoutes() {
   return (
