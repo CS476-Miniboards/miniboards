@@ -6,13 +6,12 @@ import Dashboard from "../Controller components/Dashboard";
 import Login from "../components/Login";
 import ForgotPassword from "../components/ForgotPassword";
 import UpdateProfile from "../components/UpdateProfile";
-import Home from "../components/Home";
+import Home from "../View Components/Home";
 import Board from "../View Components/Board";
 import Game from "../View Components/Game";
-import AdminList from "../View Components/AdminList";
 import Signup from "../components/Signup";
 import ErrorReports from "../View Components/ErrorReports";
-import ErrorReport from "../components/ErrorReport";
+import ReportError from "../components/ReportError";
 
 export default function AllRoutes() {
   return (
@@ -60,14 +59,6 @@ export default function AllRoutes() {
         }
       />
       <Route
-        path="/admin"
-        element={
-          <RequireAdmin redirectTo="/login">
-            <AdminList />
-          </RequireAdmin>
-        }
-      />
-      <Route
         path="/signup"
         element={
           <NoAuth>
@@ -103,7 +94,7 @@ export default function AllRoutes() {
         path="/report-error"
         element={
           <RequireAuth redirectTo="/login">
-            <ErrorReport />
+            <ReportError />
           </RequireAuth>
         }
       />

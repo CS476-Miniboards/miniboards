@@ -9,6 +9,7 @@ export default function RealtimeData({ game }) {
   const { isAdmin } = useAdmin();
   const { deleteScore } = useGame();
 
+  //TODO: Move to useGame
   // Keep highscore table updated and sorted in real-time
   useEffect(() => {
     if (game?.scores) {

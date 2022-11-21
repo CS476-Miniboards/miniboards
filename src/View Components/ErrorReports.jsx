@@ -6,7 +6,6 @@ export default function ErrorReports() {
   const { errorList } = useAdmin();
   return (
     <Container>
-      {" "}
       <Table striped bordered hover>
         <thead>
           <tr>
