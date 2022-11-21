@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../Models/gameList/GameListContext";
+import { useApp } from "../Models/AppContext";
 
 export default function Home() {
+  const { register } = useApp();
   const { gameList, selectGame } = useGame();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    register(this, "<GameListProvider>");
+    // eslint-disable-next-line
+  }, []);
 
   function handleOnClick(game) {
     selectGame(game);
