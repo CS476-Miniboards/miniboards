@@ -3,13 +3,20 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useAdmin } from "../Models/admin/AdminContext";
 import { useGame } from "../Models/gameList/GameListContext";
+import { useApp } from "../Models/AppContext";
 
 export default function RealtimeData({ game }) {
   const [sortedScores, setSortedScores] = useState([]);
+  const { register } = useApp();
   const { isAdmin } = useAdmin();
   const { deleteScore } = useGame();
 
-  // Keep highscore table updated and sorted in real-time
+  useEffect(() => {
+    register(this, "<GameListProvider>");
+    register(this, "<AdminProvider>");
+    // eslint-disable-next-line
+  }, []);
+
   useEffect(() => {
     if (game?.scores) {
       setSortedScores([]);

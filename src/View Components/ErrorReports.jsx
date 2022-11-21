@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
 import { useAdmin } from "../Models/admin/AdminContext";
+import { useApp } from "../Models/AppContext";
 
 export default function ErrorReports() {
+  const { register } = useApp();
   const { errorList } = useAdmin();
+  useEffect(() => {
+    register(this, "<AdminProvider>");
+    // eslint-disable-next-line
+  }, []);
   return (
     <Container>
-      {" "}
       <Table striped bordered hover>
         <thead>
           <tr>

@@ -74,7 +74,6 @@ export function AdminProvider({ children }) {
 
   const value = {
     isAdmin,
-    adminList,
     errorList,
     submitError,
   };

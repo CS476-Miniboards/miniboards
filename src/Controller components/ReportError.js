@@ -5,7 +5,7 @@ import { useAdmin } from "../Models/admin/AdminContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
-export default function ErrorReport() {
+export default function ReportError() {
   const { dropdownList } = useGame();
   const { submitError } = useAdmin();
 

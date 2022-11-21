@@ -75,12 +75,11 @@ export default function UpdateProfile() {
               />
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Change Password</Form.Label>
               <Form.Control
                 type="password"
                 ref={passwordRef}
                 placeholder="Leave blank to keep the same"
-                autoComplete="current-password"
               />
             </Form.Group>
             <Form.Group id="password-confirm">

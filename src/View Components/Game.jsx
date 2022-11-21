@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useGame } from "../Models/gameList/GameListContext";
+import { useApp } from "../Models/AppContext";
 import { useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
 
 export default function Game() {
+  const { register } = useApp();
   const { isLoading, currentGame, saveScore } = useGame();
   const navigate = useNavigate();
 
   const [currentScore, setCurrentScore] = useState("");
   const [gameOver, setGameOver] = useState(false);
+
+  useEffect(() => {
+    register(this, "<GameListProvider>");
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (currentGame == null) {
