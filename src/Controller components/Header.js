@@ -37,14 +37,6 @@ export default function Header({ children }) {
                   <NavDropdown.Item
                     eventKey="collapse"
                     as={Link}
-                    to="/admin"
-                    active={false}
-                  >
-                    Admin List
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    eventKey="collapse"
-                    as={Link}
                     to="/errors"
                     active={false}
                   >
