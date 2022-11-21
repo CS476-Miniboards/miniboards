@@ -13,7 +13,6 @@ export function AppProvider({ children }) {
   const [observerList, setObserverList] = useState([]);
 
   useEffect(() => {
-    console.log("Observerlist", observerList);
     for (var pair in observerList) {
       <AppContext.Consumer>
         {pair.provider}
@@ -25,7 +24,6 @@ export function AppProvider({ children }) {
   function register(observer, provider) {
     var object = { observer, provider };
     var index = objectIndex(object);
-    console.log(index);
     if (index === -1) {
       setObserverList([...observerList, object]);
     }
